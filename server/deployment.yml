@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sns-server-deployment
+  labels:
+    app: sns-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sns-server-app
+  template:
+    metadata:
+      labels:
+        app: sns-server-app
+    spec:
+      containers:
+      - name: sns-server
+        image: sns-server
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80
