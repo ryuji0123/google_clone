@@ -1,11 +1,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: sns-server-service
+  name: sns-backend-service
 spec:
   type: LoadBalancer
   selector:
-    app: sns-server-app
+    app: sns-backend-app
   ports:
     - protocol: TCP
       port: 80

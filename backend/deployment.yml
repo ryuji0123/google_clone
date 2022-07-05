@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sns-server-deployment
+  name: sns-backend-deployment
   labels:
-    app: sns-server
+    app: sns-backend
 spec:
   revisionHistoryLimit: 0
   replicas: 2
   selector:
     matchLabels:
-      app: sns-server-app
+      app: sns-backend-app
   template:
     metadata:
       labels:
-        app: sns-server-app
+        app: sns-backend-app
     spec:
       containers:
-      - name: sns-server
-        image: sns-server
+      - name: sns-backend
+        image: sns-backend
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80

@@ -1,21 +1,21 @@
-SERVER_IMAGE_NAME = sns-server
-SERVER_IMAGE_LABEL = latest
-SERVER_CONTAINER_NAME = sns-server
+BACKEND_IMAGE_NAME = sns-backend
+BACKEND_IMAGE_LABEL = latest
+BACKEND_CONTAINER_NAME = sns-backend
 
 
-build-server:
+build-backend:
 	docker build \
-		-f server/Dockerfile \
-		-t $(SERVER_IMAGE_NAME):$(SERVER_IMAGE_LABEL) \
+		-f backend/Dockerfile \
+		-t $(BACKEND_IMAGE_NAME):$(BACKEND_IMAGE_LABEL) \
 		.
 
-run-server:
-	$(eval RUNNING != docker inspect --format="{{.State.Running}}" --type container $(SERVER_CONTAINER_NAME) $^ 2>/dev/null ; true)
+run-backend:
+	$(eval RUNNING != docker inspect --format="{{.State.Running}}" --type container $(backend_CONTAINER_NAME) $^ 2>/dev/null ; true)
 	if [ $(RUNNING) = "true" ]; then \
-	  docker stop $(SERVER_CONTAINER_NAME) ; \
+	  docker stop $(BACKEND_CONTAINER_NAME) ; \
 	fi
 	docker run \
 	  -d \
-	  --name $(SERVER_CONTAINER_NAME) \
+	  --name $(BACKEND_CONTAINER_NAME) \
 	  --rm \
-	  $(SERVER_IMAGE_NAME):$(SERVER_IMAGE_LABEL)
+	  $(BACKEND_IMAGE_NAME):$(BACKEND_IMAGE_LABEL)
