@@ -5,6 +5,7 @@ metadata:
   labels:
     app: sns-server
 spec:
+  revisionHistoryLimit: 0
   replicas: 2
   selector:
     matchLabels:
